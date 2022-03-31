@@ -1,0 +1,73 @@
+class Animal {
+    private String name;
+    private int legs;
+
+    Animal(String name) {
+        this.name = name
+    }
+
+    String getName() {
+        return name
+    }
+
+    void setName(String name) {
+        this.name = name
+    }
+
+    int getLegs() {
+        return legs
+    }
+
+    void setLegs(int legs) {
+        this.legs = legs
+    }
+
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", legs=" + legs +
+                '}';
+    }
+}
+
+class Dog extends Animal {
+    private int age;
+
+    Dog(int age) {
+        super("dog")
+        this.age = age
+    }
+
+    int getAge() {
+        return age
+    }
+
+    void setAge(int age) {
+        this.age = age
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString() + "Dog{" +
+                "age=" + age +
+                '}';
+    }
+}
+
+Animal aAnimal = project.extensions.create(Animal, "animal", Dog, 18)
+Dog aDog = project.extensions.create("dog", Dog, 34)
+animal {
+    legs 2
+}
+
+dog {
+    setLegs 4
+}
+
+task testExt {
+    println aAnimal
+    println aDog
+}
